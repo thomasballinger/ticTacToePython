@@ -24,7 +24,6 @@ def get_next_player(player, first_player, second_player):
     return first_player if player == second_player else second_player
 
 def make_move(player):
-    board_marker = ""
     if player == playerX:
         board_marker = "X"
     else:
