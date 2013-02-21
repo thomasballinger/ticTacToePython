@@ -26,7 +26,7 @@ def make_move(player):
     return {playerX : 'x', playerO : 'O'}[player]
 
 def verify_numerical_selection_for_move(user_move_input):
-    if not (str.isdigit(user_move_input)):
+    if not user_move_input.isdigit():
         user_move_input = raw_input("Please enter a valid number!\n")
         return verify_numerical_selection_for_move(user_move_input)
     user_move_input = int(user_move_input)
@@ -41,7 +41,7 @@ def legal_move(current_board, current_move_selection):
 
 def game_over(current_board):
     for item in current_board:
-        if (str.isdigit(item)):
+        if item.isdigit():
             return False
     print "Game Over"
     return True
