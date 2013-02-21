@@ -1,4 +1,6 @@
 
+playerX = "player X"
+playerO = "player O"
 def welcome_to_new_game():
     print "Welcome to ticTacToe."
     display_board([None, None, None]*3)
@@ -128,8 +130,6 @@ def display_board(boardList):
 #program begins here
 
 #initial setup for new game
-playerX = "player X"
-playerO = "player O"
 first_player = welcome_to_new_game()
 second_player = determine_second_player_identity()
 current_player = first_player
