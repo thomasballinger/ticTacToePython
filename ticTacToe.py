@@ -18,11 +18,7 @@ def choose_starting_player():
     return choice(player_list)
 
 def determine_second_player_identity(first_player):
-    if first_player == playerX:
-        second_player = playerO
-    else:
-        second_player = playerX
-    return second_player
+    return get_next_player(first_player, playerX, playerO)
 
 def get_next_player(player, first_player, second_player):
     return first_player if player == second_player else second_player
