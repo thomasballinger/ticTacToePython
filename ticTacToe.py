@@ -83,13 +83,7 @@ def play_game(first_player, second_player, board):
 
 
 def display_board(boardList):
-    board = []
-
-    for item in boardList: #for the collection of items in board list, append the empty board
-        if item is None:
-            board.append(" ")
-        else:
-            board.append(item)
+    board = [x if x is not None else " " for x in boardList]
 
     print " {} | {} | {} ".format(board[0], board[1], board[2]) #using a format string, append the print statements with the new contents of board
     print "---+---+---"
