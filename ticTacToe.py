@@ -63,25 +63,12 @@ def game_over(current_board):
     return True
 
 def there_is_a_winner(current_board):
-
-    if (current_board[0] == "X" and current_board[1] == "X" and current_board[2] == "X") or (current_board[0] == "O" and current_board[1] == "O" and current_board[2] == "O"):
-        return True
-    if (current_board[3] == "X" and current_board[4] == "X" and current_board[5] == "X") or (current_board[3] == "O" and current_board[4] == "O" and current_board[5] == "O"):
-        return True
-    if (current_board[6] == "X" and current_board[7] == "X" and current_board[8] == "X") or (current_board[6] == "O" and current_board[7] == "O" and current_board[8] == "O"):
-        return True
-    if (current_board[0] == "X" and current_board[3] == "X" and current_board[6] == "X") or (current_board[0] == "O" and current_board[3] == "O" and current_board[6] == "O"):
-        return True
-    if (current_board[1] == "X" and current_board[4] == "X" and current_board[7] == "X") or (current_board[1] == "O" and current_board[4] == "O" and current_board[7] == "O"):
-        return True
-    if (current_board[2] == "X" and current_board[5] == "X" and current_board[8] == "X") or (current_board[2] == "O" and current_board[5] == "O" and current_board[8] == "O"):
-        return True
-    if (current_board[0] == "X" and current_board[4] == "X" and current_board[8] == "X") or (current_board[0] == "O" and current_board[4] == "O" and current_board[8] == "O"):
-        return True
-    if (current_board[2] == "X" and current_board[4] == "X" and current_board[6] == "X") or (current_board[2] == "O" and current_board[4] == "O" and current_board[6] == "O"):
-        return True
-    else:
-        return False
+    winning_combinations = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+    for pos1, pos2, pos3 in winning_combinations:
+        for mark in "XO":
+            if current_board[pos1] == current_board[pos2] == current_board[pos3]:
+                return True
+    return False
 
 def handle_next_move(player, first_player, second_player, board):
     move_selection = raw_input ("Ok, %s, make your move. \n" %player)
