@@ -1,6 +1,7 @@
 
 playerX = "player X"
 playerO = "player O"
+
 def welcome_to_new_game():
     print "Welcome to ticTacToe."
     display_board([None, None, None]*3)
@@ -15,24 +16,23 @@ def choose_starting_player():
     from random import choice
     return choice(player_list)
 
-def determine_second_player_identity():
+def determine_second_player_identity(first_player):
     if first_player == playerX:
         second_player = playerO
     else:
         second_player = playerX
     return second_player
 
-def get_next_player():
-    global current_player
-    if current_player == first_player:
-        current_player =  second_player
+def get_next_player(player, first_player, second_player):
+    if player == first_player:
+        player =  second_player
     else:
-        current_player = first_player
-    return current_player
+        player = first_player
+    return player
 
-def make_move(the_current_player):
+def make_move(player):
     board_marker = ""
-    if the_current_player == playerX:
+    if player == playerX:
         board_marker = "X"
     else:
         board_marker = "O"
@@ -83,32 +83,32 @@ def there_is_a_winner(current_board):
     else:
         return False
 
-def handle_next_move(player):
+def handle_next_move(player, first_player, second_player, board):
     move_selection = raw_input ("Ok, %s, make your move. \n" %player)
     verfied_move_selection = verify_numerical_selection_for_move(move_selection)
 
-    if legal_move(game_board_in_play, verfied_move_selection):
-        game_board_in_play[verfied_move_selection] = make_move(current_player)
-        display_board(game_board_in_play)
-        if there_is_a_winner(game_board_in_play):
-            print "Game over! The winner is %s" %current_player
-        elif game_over(game_board_in_play):
+    if legal_move(board, verfied_move_selection):
+        board[verfied_move_selection] = make_move(player)
+        display_board(board)
+        if there_is_a_winner(board):
+            print "Game over! The winner is %s" %player
+        elif game_over(board):
             print "Game over! Sadly, no winner. Please try again."
         else:
-            handle_next_move(get_next_player())
+            handle_next_move(get_next_player(player, first_player, second_player), first_player, second_player, board)
     else:
         print "That was an illegal move, let's try again..."
-        handle_next_move(current_player)
+        handle_next_move(player, first_player, second_player, board)
 
-def play_game():
+def play_game(first_player, second_player, board):
     #first time through
-    move_selection = raw_input ("Ok, %s, make your first move by selecting a number on the board \nto move to. \n" %current_player)
+    move_selection = raw_input ("Ok, %s, make your first move by selecting a number on the board \nto move to. \n" %first_player)
     verfied_move_selection = verify_numerical_selection_for_move(move_selection)
-    game_board_in_play[verfied_move_selection] = make_move(current_player)
-    display_board(game_board_in_play)
+    board[verfied_move_selection] = make_move(first_player)
+    display_board(board)
 
-    #subsequent games
-    handle_next_move(get_next_player())
+    #subsequent moves
+    handle_next_move(get_next_player(first_player, first_player, second_player), first_player, second_player, board)
 
 
 def display_board(boardList):
@@ -131,13 +131,12 @@ def display_board(boardList):
 
 #initial setup for new game
 first_player = welcome_to_new_game()
-second_player = determine_second_player_identity()
-current_player = first_player
-game_board_in_play = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
-display_board(game_board_in_play)
+second_player = determine_second_player_identity(first_player)
+board = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
+display_board(board)
 
 #play game
-play_game()
+play_game(first_player, second_player, board)
 
 
 
