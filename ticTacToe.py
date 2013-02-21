@@ -27,7 +27,7 @@ def get_next_player():
     else:
         current_player = first_player
     return current_player
-        
+
 def make_move(the_current_player):
     board_marker = ""
     if the_current_player == playerX:
@@ -78,13 +78,13 @@ def there_is_a_winner(current_board):
         return True
     if (current_board[2] == "X" and current_board[4] == "X" and current_board[6] == "X") or (current_board[2] == "O" and current_board[4] == "O" and current_board[6] == "O"):
         return True
-    else: 
+    else:
         return False
 
 def handle_next_move(player):
     move_selection = raw_input ("Ok, %s, make your move. \n" %player)
     verfied_move_selection = verify_numerical_selection_for_move(move_selection)
-    
+
     if legal_move(game_board_in_play, verfied_move_selection):
         game_board_in_play[verfied_move_selection] = make_move(current_player)
         display_board(game_board_in_play)
@@ -106,18 +106,18 @@ def play_game():
     display_board(game_board_in_play)
 
     #subsequent games
-    handle_next_move(get_next_player())    
+    handle_next_move(get_next_player())
 
-   
+
 def display_board(boardList):
     board = []
-    
+
     for item in boardList: #for the collection of items in board list, append the empty board
         if item is None:
             board.append(" ")
-        else: 
+        else:
             board.append(item)
-    
+
     print " {} | {} | {} ".format(board[0], board[1], board[2]) #using a format string, append the print statements with the new contents of board
     print "---+---+---"
     print " {} | {} | {} ".format(board[3], board[4], board[5])
@@ -134,7 +134,7 @@ first_player = welcome_to_new_game()
 second_player = determine_second_player_identity()
 current_player = first_player
 game_board_in_play = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
-display_board(game_board_in_play) 
+display_board(game_board_in_play)
 
 #play game
 play_game()
