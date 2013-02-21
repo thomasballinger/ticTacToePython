@@ -39,10 +39,7 @@ def verify_numerical_selection_for_move(user_move_input):
         return user_move_input
 
 def legal_move(current_board, current_move_selection):
-    if current_board[current_move_selection] == "X" or current_board[current_move_selection] == "O":
-        return False
-    else:
-        return True
+    return current_board[current_move_selection] == "X" or current_board[current_move_selection] == "O"
 
 def game_over(current_board):
     for item in current_board:
