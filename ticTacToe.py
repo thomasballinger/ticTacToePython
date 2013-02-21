@@ -24,11 +24,7 @@ def determine_second_player_identity(first_player):
     return second_player
 
 def get_next_player(player, first_player, second_player):
-    if player == first_player:
-        player =  second_player
-    else:
-        player = first_player
-    return player
+    return first_player if player == second_player else second_player
 
 def make_move(player):
     board_marker = ""
