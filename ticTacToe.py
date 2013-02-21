@@ -24,11 +24,8 @@ def get_next_player(player, first_player, second_player):
     return first_player if player == second_player else second_player
 
 def make_move(player):
-    if player == playerX:
-        board_marker = "X"
-    else:
-        board_marker = "O"
-    return board_marker
+    player_marks = {playerX : 'x', playerO : 'O'}
+    return player_marks[player]
 
 def verify_numerical_selection_for_move(user_move_input):
     if not (str.isdigit(user_move_input)):
