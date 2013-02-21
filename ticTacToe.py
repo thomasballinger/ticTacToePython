@@ -1,4 +1,6 @@
 
+from random import choice
+
 playerX = "player X"
 playerO = "player O"
 
@@ -13,7 +15,6 @@ def welcome_to_new_game():
 
 def choose_starting_player():
     player_list = [playerX, playerO]
-    from random import choice
     return choice(player_list)
 
 def determine_second_player_identity(first_player):
