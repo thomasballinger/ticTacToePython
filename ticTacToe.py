@@ -14,8 +14,7 @@ def welcome_to_new_game():
     return first_player
 
 def choose_starting_player():
-    player_list = [playerX, playerO]
-    return choice(player_list)
+    return choice([playerX, playerO])
 
 def determine_second_player_identity(first_player):
     return get_next_player(first_player, playerX, playerO)
@@ -24,8 +23,7 @@ def get_next_player(player, first_player, second_player):
     return first_player if player == second_player else second_player
 
 def make_move(player):
-    player_marks = {playerX : 'x', playerO : 'O'}
-    return player_marks[player]
+    return {playerX : 'x', playerO : 'O'}[player]
 
 def verify_numerical_selection_for_move(user_move_input):
     if not (str.isdigit(user_move_input)):
